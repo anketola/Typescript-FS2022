@@ -35,8 +35,8 @@ const parseExerciseArguments = (args: Array<string>): ExerciseParams => {
 
 const calculateExercises = (target: number, daily: Array<number>): ExerciseResults => {
     const periodLength = daily.length;
-    let trainingDays = 0
-    let totalHours = 0
+    let trainingDays = 0;
+    let totalHours = 0;
     let success;
     daily.forEach((element) => {
         if (element > 0) {
@@ -52,7 +52,7 @@ const calculateExercises = (target: number, daily: Array<number>): ExerciseResul
     } else {
         success = false;
     }
-    if (success) {
+    if (success) {
         rating = 3;
         ratingDescription = "You achieved your goal!";
     } else if (!success && trainingDays > 4) {
@@ -71,13 +71,14 @@ const calculateExercises = (target: number, daily: Array<number>): ExerciseResul
         ratingDescription,
         target,
         average
-    }
-}
+    };
+};
 
 try {
     const { target, daily } = parseExerciseArguments(process.argv);
     console.log(calculateExercises(target, daily));
 } catch (e) {
+    // eslint-disable-next-line  @typescript-eslint/no-unsafe-member-access
     console.log("Whoopsie! An error occured, message: ", e.message);
     console.log("Please give as arguments first the target hours followed by done daily exercise hours");
-};
+}

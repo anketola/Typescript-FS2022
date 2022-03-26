@@ -11,11 +11,11 @@ const parseArguments = (args: Array<string>): BmiValues => {
       return {
         height: Number(args[2]),
         weight: Number(args[3])
-      }
+      };
     } else {
       throw new Error("Please provide height (cm) and weight (kg) as numbers.");
     }
-  }
+  };
 
 export const calculateBmi = (height: number, weight: number): string => {
     const BMI = (weight / ((height/100)**2));
@@ -29,13 +29,13 @@ export const calculateBmi = (height: number, weight: number): string => {
     if (BMI >= 35 && BMI < 40) return "Obese (Class II)";
     if (BMI >= 40) return "Obese (Class III)";
     return "unknown";
-}
+};
 
 try {
     const { height, weight } = parseArguments(process.argv);
     console.log(calculateBmi(height, weight));
 } catch (error) {
-    let errorMessage = 'An error occurred.'
+    let errorMessage = 'An error occurred.';
     if (error instanceof Error) {
         errorMessage += ' Error message: ' + error.message;
     }
