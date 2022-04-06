@@ -4,7 +4,7 @@ import { Container } from "@material-ui/core";
 import axios from "axios";
 import { Patient } from "../types";
 import { apiBaseUrl } from "../constants";
-import { useStateValue } from "../state/state";
+import { useStateValue, addIndividualData } from "../state";
 
 const SinglePatientView = () => {
     const [{ individualPatients }, dispatch ] = useStateValue();
@@ -19,7 +19,8 @@ const SinglePatientView = () => {
         const fetchPatientDetails = async () => {
         try {
             const { data: patientDetails } = await axios.get<Patient>(`${apiBaseUrl}/patients/${id}`);
-            dispatch({ type: "ADD_INDIVIDUALDATA", payload: patientDetails });
+            //dispatch({ type: "ADD_INDIVIDUALDATA", payload: patientDetails });
+            dispatch(addIndividualData(patientDetails));
             //console.log(patientDetails);
             } catch (e) {
             console.error(e);
