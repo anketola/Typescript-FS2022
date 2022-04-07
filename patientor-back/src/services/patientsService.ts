@@ -1,14 +1,16 @@
-import patientsData from '../../data/patients.json';
+import patientsData from '../../data/patients';
 import { NewPatientEntry, NonSensitiveDataPatients, Patient } from '../types';
 import { v1 as uuid } from 'uuid';
-import toNewPatientEntry from '../utils';
+// import toNewPatientEntry from '../utils';
 
 
-const patients: Patient [] = patientsData.map(obj => {
-    const object = toNewPatientEntry(obj) as Patient;
-    object.id = obj.id;
-    return object;
-});
+//const patients: Patient [] = patientsData.map(obj => {
+//   const object = toNewPatientEntry(obj) as Patient;
+//    object.id = obj.id;
+//    return object;
+//});
+
+const patients: Patient[] = patientsData;
 
 const findById = (id: string): Patient | undefined => {
     const patient = patients.find(p => p.id === id);
