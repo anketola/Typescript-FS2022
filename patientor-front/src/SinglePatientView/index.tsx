@@ -5,6 +5,7 @@ import axios from "axios";
 import { Patient } from "../types";
 import { apiBaseUrl } from "../constants";
 import { useStateValue, addIndividualData } from "../state";
+import EntryItem from "./EntryItem";
 
 const SinglePatientView = () => {
     const [{ individualPatients }, dispatch ] = useStateValue();
@@ -30,6 +31,7 @@ const SinglePatientView = () => {
     }, [id]);
 
     if (patientExists) {
+        console.log(patientExists);
         let gen = "";
         switch (patientExists.gender) {
             case "male":
@@ -49,10 +51,11 @@ const SinglePatientView = () => {
                     <p>ssn: {patientExists.ssn}<br />
                     occupation: {patientExists.occupation}
                     </p>
-                    
+                    <br />
+                    <EntryItem patient={patientExists} />
                 </div>
             </Container>
-                
+            
         );
     } else {
         return (<div></div>);

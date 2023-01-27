@@ -4,14 +4,15 @@ import patientsRouter from './routes/patients';
 
 const app = express();
 const cors = require('cors')
-
+app.use(cors())
 
 app.use(express.json());
-app.use(cors())
+
 
 const PORT = 3001;
 
 app.get('/api/ping', (_req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
   console.log('someone pinged here');
   res.send('pong');
 });
