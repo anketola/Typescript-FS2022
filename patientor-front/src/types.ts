@@ -24,6 +24,19 @@ export interface EntriesListingPatient {
   patient: Patient;
 }
 
+export interface EntriesListingHospital {
+  entryDetails: HospitalEntry;
+}
+
+export interface EntriesListingOccupational {
+  entryDetails: OccupationalHealthcareEntry;
+}
+
+export interface EntriesListingHealthcheck {
+  entryDetails: HealthCheckEntry;
+}
+
+
 export interface BaseEntry {
   id: string;
   description: string;
