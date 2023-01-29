@@ -1,8 +1,8 @@
-import { NewPatientEntry, Gender } from './types';
+import { NewPatientEntry, Gender, HealthCheckEntry, EntryWithoutId } from './types';
 
 type Fields = { name: unknown, dateOfBirth: unknown, ssn: unknown, gender: unknown, occupation: unknown };
 
-const toNewPatientEntry = ({ name, dateOfBirth, ssn, gender, occupation } : Fields): NewPatientEntry => {
+export const toNewPatientEntry = ({ name, dateOfBirth, ssn, gender, occupation } : Fields): NewPatientEntry => {
     const newEntry: NewPatientEntry = {
         name: parseString(name),
         dateOfBirth: parseDate(dateOfBirth),
@@ -14,6 +14,27 @@ const toNewPatientEntry = ({ name, dateOfBirth, ssn, gender, occupation } : Fiel
 
   return newEntry;
 };
+
+export const newEntryForPatient = (entryItem : any): EntryWithoutId => {
+    switch (entryItem.type) {
+        case 'HealthCheck':
+            const newEntry: HealthCheckEntry = {
+                id: "",
+                description: parseString(entryItem.description),
+                type: "HealthCheck",
+                date: parseDate(entryItem.date),
+                specialist: parseString(entryItem.specialist),
+                healthCheckRating: entryItem.healthCheckRating,
+                diagnosisCodes: []
+            };
+            return newEntry;
+        default:
+            throw console.error("No matching entry type");
+        }
+
+};
+
+
 
 const isString = (text: unknown): text is string => {
     return typeof text === 'string' || text instanceof String;
@@ -50,5 +71,3 @@ const parseGender = (gender: unknown): Gender => {
     }
     return gender;
 };
-
-export default toNewPatientEntry;
