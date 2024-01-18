@@ -1,1 +1,3 @@
-# Typescript-FS2022
+# Fullstack Typescript course
+
+## Finished exercises:
